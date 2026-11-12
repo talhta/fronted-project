@@ -46,3 +46,34 @@
 > - Details: https://pokeapi.co/api/v2/pokemon/{id} (types, abilities, stats, images)
 > Briefly explain which page uses which endpoint. Only update PRD.md, no code.
 > </pasted_content id="3df2">
+
+**13:43 · claude**
+
+> <ide_opened_file>The user opened the file /Users/talshmeul/Desktop/fronted-project/PROMPTS.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+> 
+> 
+> <pasted_content id="3df2">
+> Read PRD.md. Now create a tasks.md file in the project root with the first 4 tasks, in build order. Each task gets a short title, 1-2 lines of description, and a "Done when:" line I can check in the browser or terminal:
+> 1. Show a list of Pokémon from a local JSON file with a few sample items, with a TypeScript type for a Pokémon. No API yet.
+> 2. Routing with React Router: list page at /, details page at /items/:id, placeholder pages for /favorites and /compare, and a navigation menu.
+> 3. Replace the local JSON with a real fetch from PokéAPI inside useEffect, with loading and error states.
+> 4. First unit tests with Vitest on the logic we wrote so far, plus Vitest UI (npm run test:ui).
+> Only create tasks.md, no code.
+> </pasted_content id="3df2">
+
+**13:44 · claude**
+
+> <ide_opened_file>The user opened the file /Users/talshmeul/Desktop/fronted-project/tasks.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+> 
+> 
+> <pasted_content id="3df2">
+> Good. Now add tasks 5-11 to tasks.md, same format (title, short description, "Done when:" line):
+> 5. Details page fetches a single Pokémon from /pokemon/{id} and shows image, types, abilities and stats.
+> 6. Search by name on the list page, with a "no results" message, and tests for the filter logic.
+> 7. Favorites: star button on Pokémon, /favorites page, saved in localStorage.
+> 8. Compare page: pick two Pokémon and show their stats side by side.
+> 9. Styling with my own CSS, looks fine on a narrow (mobile) screen.
+> 10. A 404 page for unknown URLs.
+> 11. README.md: what the app does, how to run it and the tests, which API.
+> Only update tasks.md, no code.
+> </pasted_content id="3df2">
