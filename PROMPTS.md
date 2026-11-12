@@ -119,3 +119,12 @@
 **14:03 · claude**
 
 > yes
+
+**14:12 · claude**
+
+> <ide_opened_file>The user opened the file /Users/talshmeul/Desktop/fronted-project/PROMPTS.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+> Let's do task 3 from tasks.md. Please put the fetch logic and the helper that gets the id from the url in a separate file (like src/api/pokemon.ts), so it's easy to test in task 4. Show me a short plan first, then wait for my go-ahead.
+
+**14:13 · claude**
+
+> Yes, go ahead with both recommendations

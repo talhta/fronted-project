@@ -1,18 +1,42 @@
+import { useEffect, useState } from 'react'
 import PokemonCard from '../components/PokemonCard'
-import pokemonData from '../data/pokemon.json'
+import { fetchPokemonList } from '../api/pokemon'
 import type { Pokemon } from '../types/pokemon'
 
-const pokemonList: Pokemon[] = pokemonData
-
 function ListPage() {
+  const [pokemonList, setPokemonList] = useState<Pokemon[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const controller = new AbortController()
+
+    fetchPokemonList(60, controller.signal)
+      .then((list) => {
+        setPokemonList(list)
+        setLoading(false)
+      })
+      .catch((err: unknown) => {
+        if (controller.signal.aborted) return
+        setError(err instanceof Error ? err.message : 'Something went wrong')
+        setLoading(false)
+      })
+
+    return () => controller.abort()
+  }, [])
+
   return (
     <>
       <h1>Pokédex</h1>
-      <ul className="pokemon-list">
-        {pokemonList.map((pokemon) => (
-          <PokemonCard key={pokemon.id} pokemon={pokemon} />
-        ))}
-      </ul>
+      {loading && <p>Loading…</p>}
+      {error && <p className="error">Couldn't load Pokémon: {error}</p>}
+      {!loading && !error && (
+        <ul className="pokemon-list">
+          {pokemonList.map((pokemon) => (
+            <PokemonCard key={pokemon.id} pokemon={pokemon} />
+          ))}
+        </ul>
+      )}
     </>
   )
 }

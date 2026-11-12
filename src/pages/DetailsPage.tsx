@@ -1,19 +1,17 @@
 import { Link, useParams } from 'react-router'
-import pokemonData from '../data/pokemon.json'
-import type { Pokemon } from '../types/pokemon'
+import { getSpriteUrl } from '../api/pokemon'
 
-const pokemonList: Pokemon[] = pokemonData
-
+// Temporary: shows only the id and image. Task 5 fetches the full details.
 function DetailsPage() {
   const { id } = useParams()
-  const pokemon = pokemonList.find((p) => p.id === Number(id))
+  const pokemonId = Number(id)
 
-  if (!pokemon) {
+  if (!Number.isInteger(pokemonId) || pokemonId <= 0) {
     return (
       <>
         <h1>Pokémon not found</h1>
         <p>
-          There is no Pokémon with id {id}. <Link to="/">Back to the list</Link>
+          "{id}" is not a valid Pokémon id. <Link to="/">Back to the list</Link>
         </p>
       </>
     )
@@ -21,9 +19,13 @@ function DetailsPage() {
 
   return (
     <>
-      <h1 className="pokemon-name">{pokemon.name}</h1>
-      <img src={pokemon.image} alt={pokemon.name} width="192" height="192" />
-      <p>#{pokemon.id}</p>
+      <h1>#{pokemonId}</h1>
+      <img
+        src={getSpriteUrl(pokemonId)}
+        alt={`Pokémon #${pokemonId}`}
+        width="192"
+        height="192"
+      />
     </>
   )
 }

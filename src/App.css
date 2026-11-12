@@ -51,3 +51,7 @@ main {
 .pokemon-card:hover {
   border-color: var(--accent-border);
 }
+
+.error {
+  color: #d33;
+}

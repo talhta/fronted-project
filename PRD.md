@@ -32,7 +32,7 @@ We use [PokéAPI](https://pokeapi.co/). It's free and doesn't need an API key.
 
 Which page uses which endpoint:
 
-- **List (`/`)**: List endpoint for names and ids. The search filters these results in the browser. The list endpoint doesn't return images, so each card's image comes from the Details endpoint (or a sprite URL built from the id).
+- **List (`/`)**: List endpoint for names and ids. The search filters these results in the browser. The list endpoint doesn't return images, so each card's image is a sprite URL built from the id (`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{id}.png`). That keeps the list page to one request.
 - **Details (`/items/:id`)**: Details endpoint, with the `id` taken from the URL.
 - **Favorites (`/favorites`)**: The starred ids are read from localStorage, then the Details endpoint is called for each one.
 - **Compare (`/compare`)**: List endpoint to choose the two Pokémon, then the Details endpoint for each of them to get their stats.
