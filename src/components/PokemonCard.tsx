@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import type { Pokemon } from '../types/pokemon'
 
 type Props = {
@@ -6,9 +7,11 @@ type Props = {
 
 function PokemonCard({ pokemon }: Props) {
   return (
-    <li className="pokemon-card">
-      <img src={pokemon.image} alt={pokemon.name} width="96" height="96" />
-      <span className="pokemon-name">{pokemon.name}</span>
+    <li>
+      <Link to={`/items/${pokemon.id}`} className="pokemon-card">
+        <img src={pokemon.image} alt={pokemon.name} width="96" height="96" />
+        <span className="pokemon-name">{pokemon.name}</span>
+      </Link>
     </li>
   )
 }

@@ -1,20 +1,24 @@
-import PokemonCard from './components/PokemonCard'
-import pokemonData from './data/pokemon.json'
-import type { Pokemon } from './types/pokemon'
+import { Route, Routes } from 'react-router'
+import NavBar from './components/NavBar'
+import ListPage from './pages/ListPage'
+import DetailsPage from './pages/DetailsPage'
+import FavoritesPage from './pages/FavoritesPage'
+import ComparePage from './pages/ComparePage'
 import './App.css'
-
-const pokemonList: Pokemon[] = pokemonData
 
 function App() {
   return (
-    <main>
-      <h1>Pokédex</h1>
-      <ul className="pokemon-list">
-        {pokemonList.map((pokemon) => (
-          <PokemonCard key={pokemon.id} pokemon={pokemon} />
-        ))}
-      </ul>
-    </main>
+    <>
+      <NavBar />
+      <main>
+        <Routes>
+          <Route path="/" element={<ListPage />} />
+          <Route path="/items/:id" element={<DetailsPage />} />
+          <Route path="/favorites" element={<FavoritesPage />} />
+          <Route path="/compare" element={<ComparePage />} />
+        </Routes>
+      </main>
+    </>
   )
 }
 
