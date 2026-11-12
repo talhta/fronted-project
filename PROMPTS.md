@@ -81,3 +81,32 @@
 **13:48 · claude**
 
 > Let's start task 1 from tasks.md. Show me a short plan first, then build it. Remove the default Vite demo content from App.tsx.
+
+**13:56 · claude**
+
+> <ide_selection>The user selected the lines 1 to 22 from /Users/talshmeul/Desktop/fronted-project/src/App.tsx:
+> import PokemonCard from './components/PokemonCard'
+> import pokemonData from './data/pokemon.json'
+> import type { Pokemon } from './types/pokemon'
+> import './App.css'
+> 
+> const pokemonList: Pokemon[] = pokemonData
+> 
+> function App() {
+>   return (
+>     <main>
+>       <h1>Pokédex</h1>
+>       <ul className="pokemon-list">
+>         {pokemonList.map((pokemon) => (
+>           <PokemonCard key={pokemon.id} pokemon={pokemon} />
+>         ))}
+>       </ul>
+>     </main>
+>   )
+> }
+> 
+> export default App
+> 
+> 
+> This may or may not be related to the current task.</ide_selection>
+> Yes, please delete the unused demo images and icons.
