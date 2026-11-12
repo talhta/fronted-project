@@ -77,3 +77,7 @@
 > 11. README.md: what the app does, how to run it and the tests, which API.
 > Only update tasks.md, no code.
 > </pasted_content id="3df2">
+
+**13:48 · claude**
+
+> Let's start task 1 from tasks.md. Show me a short plan first, then build it. Remove the default Vite demo content from App.tsx.
