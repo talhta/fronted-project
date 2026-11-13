@@ -128,3 +128,29 @@
 **14:13 · claude**
 
 > Yes, go ahead with both recommendations
+
+## 2026-11-13
+
+**17:10 · claude**
+
+> <ide_opened_file>The user opened the file /Users/talshmeul/Desktop/fronted-project/src/api/pokemon.ts in the IDE. This may or may not be related to the current task.</ide_opened_file>
+> Explain what you did in task 2 in simple words. I'm a beginner. What problem does React Router solve?
+
+**17:22 · claude**
+
+> <ide_opened_file>The user opened the file /Users/talshmeul/Desktop/fronted-project/index.html in the IDE. This may or may not be related to the current task.</ide_opened_file>
+> What is StrictMode and why does it make useEffect run twice in development?
+
+**17:25 · claude**
+
+> <ide_opened_file>The user opened the file /Users/talshmeul/Desktop/fronted-project/src/main.tsx in the IDE. This may or may not be related to the current task.</ide_opened_file>
+> Why does React need a key in a list?
+
+**17:48 · claude**
+
+> <ide_opened_file>The user opened the file /Users/talshmeul/Desktop/fronted-project/index.html in the IDE. This may or may not be related to the current task.</ide_opened_file>
+> Let's do task 4 from tasks.md. Install Vitest and @vitest/ui, add "test" and "test:ui" scripts, and write at least 5 meaningful tests for the functions in src/api/pokemon.ts, including the error case. Show me a short plan first, then wait for my go-ahead.
+
+**17:51 · claude**
+
+> do it
