@@ -181,3 +181,15 @@
 **11:46 · claude**
 
 > Explain the 6 tests in filterPokemon.test.ts in simple words. For each test, what does it check and why is it important?
+
+**12:24 · claude**
+
+> Let's do task 7 from tasks.md. Put the logic for adding/removing favorites and reading/saving localStorage in separate functions so they're easy to test, and add tests. In your plan, explain where the favorites state will live and why. Show me a short plan first, then wait for my go-ahead.
+
+**12:27 · claude**
+
+> Let's keep the favorites state in App and pass it down as props instead of using Context. I'm a beginner and props are what I learned in the course, so it'll be easier for me to explain. Keep the rest of the plan. Go ahead.
+
+**12:29 · claude**
+
+> continue

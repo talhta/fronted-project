@@ -127,3 +127,42 @@ main {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+
+.pokemon-card-item {
+  position: relative;
+}
+
+.pokemon-card-item .pokemon-card {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.pokemon-card-item .favorite-button {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+}
+
+.favorite-button {
+  font-size: 22px;
+  line-height: 1;
+  padding: 4px 6px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.favorite-button:hover {
+  background: var(--accent-bg);
+}
+
+.favorite-button.is-favorite {
+  color: #e6a700;
+}
+
+.favorite-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

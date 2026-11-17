@@ -2,9 +2,15 @@ import { useEffect, useState } from 'react'
 import PokemonCard from '../components/PokemonCard'
 import { fetchPokemonList } from '../api/pokemon'
 import { filterPokemonByName } from '../utils/filterPokemon'
+import { isFavorite } from '../utils/favorites'
 import type { Pokemon } from '../types/pokemon'
 
-function ListPage() {
+type Props = {
+  favorites: number[]
+  onToggleFavorite: (id: number) => void
+}
+
+function ListPage({ favorites, onToggleFavorite }: Props) {
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -52,7 +58,12 @@ function ListPage() {
           ) : (
             <ul className="pokemon-list">
               {visible.map((pokemon) => (
-                <PokemonCard key={pokemon.id} pokemon={pokemon} />
+                <PokemonCard
+                  key={pokemon.id}
+                  pokemon={pokemon}
+                  isFavorite={isFavorite(favorites, pokemon.id)}
+                  onToggleFavorite={onToggleFavorite}
+                />
               ))}
             </ul>
           )}

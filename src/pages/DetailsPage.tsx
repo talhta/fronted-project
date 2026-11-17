@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router'
 import { fetchPokemonDetails } from '../api/pokemon'
+import FavoriteButton from '../components/FavoriteButton'
+import { isFavorite } from '../utils/favorites'
 import type { PokemonDetails } from '../types/pokemon'
 
 // What we got back for a given id: either the data or an error message.
@@ -8,7 +10,12 @@ type Result =
   | { id: number; pokemon: PokemonDetails; error: null }
   | { id: number; pokemon: null; error: string }
 
-function DetailsPage() {
+type Props = {
+  favorites: number[]
+  onToggleFavorite: (id: number) => void
+}
+
+function DetailsPage({ favorites, onToggleFavorite }: Props) {
   const { id } = useParams()
   const pokemonId = Number(id)
   const isValidId = Number.isInteger(pokemonId) && pokemonId > 0
@@ -65,6 +72,11 @@ function DetailsPage() {
       <h1 className="pokemon-name">
         {pokemon.name} <span className="pokemon-id">#{pokemon.id}</span>
       </h1>
+      <FavoriteButton
+        name={pokemon.name}
+        isFavorite={isFavorite(favorites, pokemon.id)}
+        onToggle={() => onToggleFavorite(pokemon.id)}
+      />
       <img src={pokemon.image} alt={pokemon.name} width="240" height="240" />
 
       <h2>Types</h2>
