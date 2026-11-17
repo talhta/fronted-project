@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import PokemonCard from '../components/PokemonCard'
 import { fetchPokemonList } from '../api/pokemon'
+import { filterPokemonByName } from '../utils/filterPokemon'
 import type { Pokemon } from '../types/pokemon'
 
 function ListPage() {
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [query, setQuery] = useState('')
 
   useEffect(() => {
     const controller = new AbortController()
@@ -25,17 +27,36 @@ function ListPage() {
     return () => controller.abort()
   }, [])
 
+  // Derived from data we already have, so no extra state or effect is needed.
+  const visible = filterPokemonByName(pokemonList, query)
+
   return (
     <>
       <h1>Pokédex</h1>
       {loading && <p>Loading…</p>}
       {error && <p className="error">Couldn't load Pokémon: {error}</p>}
       {!loading && !error && (
-        <ul className="pokemon-list">
-          {pokemonList.map((pokemon) => (
-            <PokemonCard key={pokemon.id} pokemon={pokemon} />
-          ))}
-        </ul>
+        <>
+          <div className="search">
+            <label htmlFor="search">Search by name</label>
+            <input
+              id="search"
+              type="search"
+              placeholder="e.g. pikachu"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+          </div>
+          {visible.length === 0 ? (
+            <p>No Pokémon match "{query.trim()}".</p>
+          ) : (
+            <ul className="pokemon-list">
+              {visible.map((pokemon) => (
+                <PokemonCard key={pokemon.id} pokemon={pokemon} />
+              ))}
+            </ul>
+          )}
+        </>
       )}
     </>
   )

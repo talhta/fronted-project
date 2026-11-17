@@ -165,3 +165,19 @@
 **11:05 · claude**
 
 > Yes, go ahead, including the extra tests.
+
+**11:28 · claude**
+
+> Explain step by step what happens from the moment I click a Pokémon card in the list until its details appear on the screen. Which files and functions are involved, and when does the API call happen?
+
+**11:37 · claude**
+
+> Let's do task 6 from tasks.md. Put the filter logic in a separate pure function so it's easy to test, and add tests for it. Show me a short plan first, then wait for my go-ahead.
+
+**11:41 · claude**
+
+> go ahead
+
+**11:46 · claude**
+
+> Explain the 6 tests in filterPokemon.test.ts in simple words. For each test, what does it check and why is it important?
