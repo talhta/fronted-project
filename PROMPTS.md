@@ -154,3 +154,14 @@
 **17:51 · claude**
 
 > do it
+
+## 2026-11-17
+
+**11:01 · claude**
+
+> <ide_opened_file>The user opened the file /Users/talshmeul/Desktop/fronted-project/src/api/pokemon.test.ts in the IDE. This may or may not be related to the current task.</ide_opened_file>
+> Let's do task 5 from tasks.md. Put the fetch for a single Pokémon in src/api/pokemon.ts next to the list fetch, with a TypeScript type for the response. Show the official artwork image. Show me a short plan first, then wait for my go-ahead.
+
+**11:05 · claude**
+
+> Yes, go ahead, including the extra tests.

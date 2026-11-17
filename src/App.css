@@ -55,3 +55,51 @@ main {
 .error {
   color: #d33;
 }
+
+.details h2 {
+  margin-top: 24px;
+}
+
+.pokemon-id {
+  color: var(--text);
+  font-size: 0.6em;
+}
+
+.tag-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.tag-list li {
+  padding: 2px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  text-transform: capitalize;
+}
+
+.stats {
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.stats div {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.stats dt {
+  text-transform: capitalize;
+}
+
+.stats dd {
+  margin: 0;
+  color: var(--text-h);
+  font-weight: 600;
+}

@@ -1,12 +1,36 @@
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router'
-import { getSpriteUrl } from '../api/pokemon'
+import { fetchPokemonDetails } from '../api/pokemon'
+import type { PokemonDetails } from '../types/pokemon'
 
-// Temporary: shows only the id and image. Task 5 fetches the full details.
+// What we got back for a given id: either the data or an error message.
+type Result =
+  | { id: number; pokemon: PokemonDetails; error: null }
+  | { id: number; pokemon: null; error: string }
+
 function DetailsPage() {
   const { id } = useParams()
   const pokemonId = Number(id)
+  const isValidId = Number.isInteger(pokemonId) && pokemonId > 0
 
-  if (!Number.isInteger(pokemonId) || pokemonId <= 0) {
+  const [result, setResult] = useState<Result | null>(null)
+
+  useEffect(() => {
+    if (!isValidId) return
+    const controller = new AbortController()
+
+    fetchPokemonDetails(pokemonId, controller.signal)
+      .then((pokemon) => setResult({ id: pokemonId, pokemon, error: null }))
+      .catch((err: unknown) => {
+        if (controller.signal.aborted) return
+        const message = err instanceof Error ? err.message : 'Something went wrong'
+        setResult({ id: pokemonId, pokemon: null, error: message })
+      })
+
+    return () => controller.abort()
+  }, [pokemonId, isValidId])
+
+  if (!isValidId) {
     return (
       <>
         <h1>Pokémon not found</h1>
@@ -17,16 +41,59 @@ function DetailsPage() {
     )
   }
 
+  // Still loading if we have no result yet, or the result is for a previous id.
+  if (!result || result.id !== pokemonId) {
+    return <p>Loading…</p>
+  }
+
+  if (result.error !== null) {
+    return (
+      <>
+        <h1>Couldn't load this Pokémon</h1>
+        <p className="error">{result.error}</p>
+        <p>
+          <Link to="/">Back to the list</Link>
+        </p>
+      </>
+    )
+  }
+
+  const { pokemon } = result
+
   return (
-    <>
-      <h1>#{pokemonId}</h1>
-      <img
-        src={getSpriteUrl(pokemonId)}
-        alt={`Pokémon #${pokemonId}`}
-        width="192"
-        height="192"
-      />
-    </>
+    <article className="details">
+      <h1 className="pokemon-name">
+        {pokemon.name} <span className="pokemon-id">#{pokemon.id}</span>
+      </h1>
+      <img src={pokemon.image} alt={pokemon.name} width="240" height="240" />
+
+      <h2>Types</h2>
+      <ul className="tag-list">
+        {pokemon.types.map((type) => (
+          <li key={type}>{type}</li>
+        ))}
+      </ul>
+
+      <h2>Abilities</h2>
+      <ul className="tag-list">
+        {pokemon.abilities.map((ability) => (
+          <li key={ability.name}>
+            {ability.name}
+            {ability.hidden && ' (hidden)'}
+          </li>
+        ))}
+      </ul>
+
+      <h2>Stats</h2>
+      <dl className="stats">
+        {pokemon.stats.map((stat) => (
+          <div key={stat.name}>
+            <dt>{stat.name}</dt>
+            <dd>{stat.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </article>
   )
 }
 
