@@ -222,3 +222,11 @@
 **17:13 · claude**
 
 > go ahead, including the colored types and stat bars
+
+**17:29 · claude**
+
+> I want the app to look more colorful and fun, like a Pokédex. Suggest 3 small style ideas (only CSS, no logic changes) and wait for me to pick.
+
+**17:30 · claude**
+
+> Let's do all three. Go ahead.

@@ -6,20 +6,21 @@ main {
   padding: 0 16px 48px;
 }
 
-/* ---------- Nav bar ---------- */
+/* ---------- Nav bar (red Pokédex header) ---------- */
 
 .navbar {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
+  background: linear-gradient(to bottom, #e3353e, #c4232c);
+  border-bottom: 4px solid #8f1219;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .navbar-inner {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 12px 16px;
+  padding: 10px 16px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -28,10 +29,43 @@ main {
 }
 
 .navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--accent);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #fff;
   text-decoration: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* The big blue "lens" */
+.navbar-brand::before {
+  content: '';
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  background: radial-gradient(circle at 35% 35%, #c9f0ff 0 12%, #3fb4f0 30%, #1466b8 100%);
+  box-shadow:
+    0 0 0 2px #8f1219,
+    0 0 10px rgba(80, 190, 255, 0.8);
+}
+
+/* The three small lights: one red dot, copied as yellow and green with box-shadow */
+.navbar-brand::after {
+  content: '';
+  flex: none;
+  width: 10px;
+  height: 10px;
+  margin-right: 32px;
+  border-radius: 50%;
+  background: #ff5b5b;
+  box-shadow:
+    16px 0 0 #ffd84a,
+    32px 0 0 #5fdc6b;
 }
 
 .navbar-links {
@@ -42,19 +76,23 @@ main {
 .navbar-links a {
   padding: 6px 12px;
   border-radius: 999px;
-  color: var(--text);
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .navbar-links a:hover {
-  color: var(--text-h);
-  background: var(--accent-soft);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .navbar-links a.active {
-  color: var(--accent);
-  background: var(--accent-soft);
+  color: #c4232c;
+  background: #fff;
+}
+
+.navbar :focus-visible {
+  outline-color: #fff;
 }
 
 /* ---------- Messages (loading, empty, error) ---------- */
@@ -133,14 +171,54 @@ main {
 }
 
 .pokemon-card:hover {
-  transform: translateY(-2px);
   border-color: var(--accent);
+  animation: wiggle 0.45s ease-in-out;
 }
 
+/* A little shake, like a Poké Ball about to open */
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+  75% {
+    transform: rotate(-1.5deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pokemon-card:hover {
+    animation: none;
+  }
+}
+
+/* A faint Poké Ball behind the sprite: center button, dark band, red top, white bottom */
 .pokemon-card img {
-  width: 96px;
-  height: 96px;
+  width: 104px;
+  height: 104px;
+  padding: 4px;
   object-fit: contain;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.9) 0 9px,
+      rgba(40, 40, 48, 0.25) 9px 13px,
+      transparent 13px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(227, 53, 62, 0.18) 0 calc(50% - 2px),
+      rgba(40, 40, 48, 0.25) calc(50% - 2px) calc(50% + 2px),
+      rgba(255, 255, 255, 0.5) calc(50% + 2px)
+    );
+  box-shadow: inset 0 0 0 2px rgba(40, 40, 48, 0.12);
 }
 
 .pokemon-card .pokemon-id {
@@ -311,6 +389,14 @@ main {
   background: var(--accent);
   border-radius: 999px;
 }
+
+/* PokéAPI always returns the stats in this order: HP, Attack, Defense, Sp. Atk, Sp. Def, Speed */
+.stat-row:nth-child(1) .stat-bar-fill { background: #4caf50; } /* HP */
+.stat-row:nth-child(2) .stat-bar-fill { background: #e8452f; } /* Attack */
+.stat-row:nth-child(3) .stat-bar-fill { background: #3e8ed6; } /* Defense */
+.stat-row:nth-child(4) .stat-bar-fill { background: #9a5bd1; } /* Sp. Atk */
+.stat-row:nth-child(5) .stat-bar-fill { background: #2bb3a3; } /* Sp. Def */
+.stat-row:nth-child(6) .stat-bar-fill { background: #f2b822; } /* Speed */
 
 /* ---------- Compare page ---------- */
 
