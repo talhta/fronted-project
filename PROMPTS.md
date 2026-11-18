@@ -193,3 +193,19 @@
 **12:29 · claude**
 
 > continue
+
+**12:37 · claude**
+
+> <ide_opened_file>The user opened the file /Users/talshmeul/Desktop/fronted-project/src/components/PokemonCard.tsx in the IDE. This may or may not be related to the current task.</ide_opened_file>
+> Why does the favorites state live in App.tsx and not inside FavoritesPage? How does a click on the star in PokemonCard update the list?
+
+## 2026-11-18
+
+**16:31 · claude**
+
+> <ide_opened_file>The user opened the file /Users/talshmeul/Desktop/fronted-project/README.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+> Let's do task 8 from tasks.md. Reuse fetchPokemonList and fetchPokemonDetails. Make the column that shows one Pokémon's stats a separate component in src/components, so we have at least 4 components. Don't add new tests for this task. Show me a short plan first, then wait for my go-ahead.
+
+**16:33 · claude**
+
+> go ahead, without the highlighting

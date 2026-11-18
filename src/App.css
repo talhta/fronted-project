@@ -166,3 +166,49 @@ main {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.compare-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.compare-picker select {
+  padding: 8px;
+  font: inherit;
+  text-transform: capitalize;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-h);
+}
+
+.stats-column {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.stats-column.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+}
+
+.stats-column h2 {
+  margin: 8px 0;
+}
+
+.stats-column .stats {
+  font-size: 0.9em;
+}
