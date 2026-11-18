@@ -254,7 +254,6 @@
 > After every task I checked it in the browser against its "Done when" line, ran npm test and npm run build, then committed and pushed.
 > At the start, a git add command got logged through Copilot, so I turned Copilot off to make sure all prompts come from Claude Code.
 > For every task I asked the agent for a plan before it wrote code, and read it before approving.
-> In task 7 the agent suggested React Context. I asked to keep the favorites in App and pass them down as props instead, because that's what I learned in the course and I can explain it.
 > In task 8 I chose to skip highlighting the higher stat, to keep the code simple.
 > After task 7 I asked not to add more tests, since we already had 30.
 > I asked the agent many questions about the code to understand it and prepare for the oral defense.
