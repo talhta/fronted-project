@@ -5,6 +5,7 @@ import ListPage from './pages/ListPage'
 import DetailsPage from './pages/DetailsPage'
 import FavoritesPage from './pages/FavoritesPage'
 import ComparePage from './pages/ComparePage'
+import NotFoundPage from './pages/NotFoundPage'
 import { loadFavorites, saveFavorites, toggleFavorite } from './utils/favorites'
 import './App.css'
 
@@ -55,6 +56,8 @@ function App() {
             }
           />
           <Route path="/compare" element={<ComparePage />} />
+          {/* Must stay last: "*" matches any URL the routes above did not. */}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
     </>
