@@ -38,9 +38,9 @@ function ListPage({ favorites, onToggleFavorite }: Props) {
 
   return (
     <>
-      <h1>Pokédex</h1>
-      {loading && <p>Loading…</p>}
-      {error && <p className="error">Couldn't load Pokémon: {error}</p>}
+      <h1>All Pokémon</h1>
+      {loading && <p className="message">Loading…</p>}
+      {error && <p className="message error">Couldn't load Pokémon: {error}</p>}
       {!loading && !error && (
         <>
           <div className="search">
@@ -54,7 +54,7 @@ function ListPage({ favorites, onToggleFavorite }: Props) {
             />
           </div>
           {visible.length === 0 ? (
-            <p>No Pokémon match "{query.trim()}".</p>
+            <p className="message">No Pokémon match "{query.trim()}".</p>
           ) : (
             <ul className="pokemon-list">
               {visible.map((pokemon) => (

@@ -37,7 +37,7 @@ function FavoritesPage({ favorites, onToggleFavorite }: Props) {
     return (
       <>
         <h1>Favorites</h1>
-        <p>
+        <p className="message">
           No favorites yet. Tap the ☆ on a Pokémon in the{' '}
           <Link to="/">list</Link> to add one.
         </p>
@@ -49,7 +49,7 @@ function FavoritesPage({ favorites, onToggleFavorite }: Props) {
     return (
       <>
         <h1>Favorites</h1>
-        <p className="error">Couldn't load your favorites: {error}</p>
+        <p className="message error">Couldn't load your favorites: {error}</p>
       </>
     )
   }
@@ -58,7 +58,7 @@ function FavoritesPage({ favorites, onToggleFavorite }: Props) {
     return (
       <>
         <h1>Favorites</h1>
-        <p>Loading…</p>
+        <p className="message">Loading…</p>
       </>
     )
   }

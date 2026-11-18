@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { fetchPokemonDetails } from '../api/pokemon'
+import StatList from './StatList'
 import type { PokemonDetails } from '../types/pokemon'
 
 type Props = {
@@ -30,7 +31,7 @@ function StatsColumn({ pokemonId }: Props) {
   }, [pokemonId])
 
   if (result === null) {
-    return <section className="stats-column">Loading…</section>
+    return <section className="stats-column message">Loading…</section>
   }
 
   if (result.error !== null) {
@@ -47,14 +48,7 @@ function StatsColumn({ pokemonId }: Props) {
     <section className="stats-column">
       <img src={pokemon.image} alt={pokemon.name} width="120" height="120" />
       <h2 className="pokemon-name">{pokemon.name}</h2>
-      <dl className="stats">
-        {pokemon.stats.map((stat) => (
-          <div key={stat.name}>
-            <dt>{stat.name}</dt>
-            <dd>{stat.value}</dd>
-          </div>
-        ))}
-      </dl>
+      <StatList stats={pokemon.stats} />
     </section>
   )
 }

@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router'
 import { fetchPokemonDetails } from '../api/pokemon'
 import FavoriteButton from '../components/FavoriteButton'
+import StatList from '../components/StatList'
+import { formatId } from '../utils/formatId'
 import { isFavorite } from '../utils/favorites'
 import type { PokemonDetails } from '../types/pokemon'
 
@@ -39,29 +41,29 @@ function DetailsPage({ favorites, onToggleFavorite }: Props) {
 
   if (!isValidId) {
     return (
-      <>
+      <div className="message">
         <h1>Pokémon not found</h1>
         <p>
           "{id}" is not a valid Pokémon id. <Link to="/">Back to the list</Link>
         </p>
-      </>
+      </div>
     )
   }
 
   // Still loading if we have no result yet, or the result is for a previous id.
   if (!result || result.id !== pokemonId) {
-    return <p>Loading…</p>
+    return <p className="message">Loading…</p>
   }
 
   if (result.error !== null) {
     return (
-      <>
+      <div className="message">
         <h1>Couldn't load this Pokémon</h1>
         <p className="error">{result.error}</p>
         <p>
           <Link to="/">Back to the list</Link>
         </p>
-      </>
+      </div>
     )
   }
 
@@ -69,42 +71,45 @@ function DetailsPage({ favorites, onToggleFavorite }: Props) {
 
   return (
     <article className="details">
-      <h1 className="pokemon-name">
-        {pokemon.name} <span className="pokemon-id">#{pokemon.id}</span>
-      </h1>
-      <FavoriteButton
-        name={pokemon.name}
-        isFavorite={isFavorite(favorites, pokemon.id)}
-        onToggle={() => onToggleFavorite(pokemon.id)}
+      <div className="details-header">
+        <h1 className="pokemon-name">{pokemon.name}</h1>
+        <span className="pokemon-id">{formatId(pokemon.id)}</span>
+        <FavoriteButton
+          name={pokemon.name}
+          isFavorite={isFavorite(favorites, pokemon.id)}
+          onToggle={() => onToggleFavorite(pokemon.id)}
+        />
+      </div>
+
+      <img
+        className="details-image"
+        src={pokemon.image}
+        alt={pokemon.name}
+        width="240"
+        height="240"
       />
-      <img src={pokemon.image} alt={pokemon.name} width="240" height="240" />
 
       <h2>Types</h2>
       <ul className="tag-list">
         {pokemon.types.map((type) => (
-          <li key={type}>{type}</li>
+          <li key={type} className={`tag type-tag type-${type}`}>
+            {type}
+          </li>
         ))}
       </ul>
 
       <h2>Abilities</h2>
       <ul className="tag-list">
         {pokemon.abilities.map((ability) => (
-          <li key={ability.name}>
+          <li key={ability.name} className="tag">
             {ability.name}
-            {ability.hidden && ' (hidden)'}
+            {ability.hidden && <span className="tag-note"> (hidden)</span>}
           </li>
         ))}
       </ul>
 
       <h2>Stats</h2>
-      <dl className="stats">
-        {pokemon.stats.map((stat) => (
-          <div key={stat.name}>
-            <dt>{stat.name}</dt>
-            <dd>{stat.value}</dd>
-          </div>
-        ))}
-      </dl>
+      <StatList stats={pokemon.stats} />
     </article>
   )
 }

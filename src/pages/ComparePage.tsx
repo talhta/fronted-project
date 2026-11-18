@@ -66,8 +66,8 @@ function ComparePage() {
   return (
     <>
       <h1>Compare</h1>
-      {loading && <p>Loading…</p>}
-      {error && <p className="error">Couldn't load Pokémon: {error}</p>}
+      {loading && <p className="message">Loading…</p>}
+      {error && <p className="message error">Couldn't load Pokémon: {error}</p>}
       {!loading && !error && (
         <>
           <div className="compare-grid">

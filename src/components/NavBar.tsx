@@ -1,14 +1,21 @@
-import { NavLink } from 'react-router'
+import { Link, NavLink } from 'react-router'
 
 function NavBar() {
   return (
-    <nav className="navbar">
-      <NavLink to="/" end>
-        List
-      </NavLink>
-      <NavLink to="/favorites">Favorites</NavLink>
-      <NavLink to="/compare">Compare</NavLink>
-    </nav>
+    <header className="navbar">
+      <div className="navbar-inner">
+        <Link to="/" className="navbar-brand">
+          Pokédex
+        </Link>
+        <nav className="navbar-links" aria-label="Main">
+          <NavLink to="/" end>
+            List
+          </NavLink>
+          <NavLink to="/favorites">Favorites</NavLink>
+          <NavLink to="/compare">Compare</NavLink>
+        </nav>
+      </div>
+    </header>
   )
 }
 
